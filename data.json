@@ -1,0 +1,24 @@
+{
+  "login": {
+    "admin": "chris",
+    "password": 20150713
+  },
+  "music": [
+    {
+      "name": " 离岛之歌",
+      "artist": "东山奈央",
+      "url": "http://music.163.com/song/media/outer/url?id=1359559416.mp3"
+    },
+
+    {
+      "name": " 烟火之律",
+      "artist": "紧那罗",
+      "url": "http://music.163.com/song/media/outer/url?id=2667988415.mp3"
+    },
+    {
+      "name": " 笼梦花·牺牲",
+      "artist": "祸津神",
+      "url": "http://music.163.com/song/media/outer/url?id=2608094726.mp3"
+    }
+  ]
+}

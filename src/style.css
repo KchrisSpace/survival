@@ -1,0 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* 字体 */
+@font-face {
+  font-family: "hakidame"; /* 自定义字体名称 */
+  src: url("/public/ttf/hakidame.TTF"); /* 字体文件路径 */
+}
+@font-face {
+  font-family: "onryou"; /* 自定义字体名称 */
+  src: url("/public/ttf/onryou.TTF"); /* 字体文件路径 */
+}
+@font-face {
+  font-family: "e1"; /* 自定义字体名称 */
+  src: url("/public/ttf/Facon-2.ttf"); /* 字体文件路径 */
+}
+@font-face {
+  font-family: "破碎中字"; /* 自定义字体名称 */
+  src: url("/public/ttf/ZeroGothic.otf"); /* 字体文件路径 */
+}
+@font-face{
+  font-family: "破碎中字2";
+  src: url("/public/ttf/posui2.otf");
+}
+@font-face {
+  font-family: "黑礼中字";
+  src: url("/public/ttf/RiiT_F.otf");
+}
