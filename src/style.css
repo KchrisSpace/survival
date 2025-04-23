@@ -28,3 +28,7 @@
   font-family: "黑礼中字";
   src: url("/public/ttf/RiiT_F.otf");
 }
+@font-face {
+  font-family: "马克笔";
+  src: url("/public/ttf/nishiki-teki-2.ttf");
+}

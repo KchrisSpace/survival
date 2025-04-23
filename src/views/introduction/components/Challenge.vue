@@ -11,6 +11,7 @@
           'rotate-hard': card.title === 'hard',
           'rotate-normal': card.title === 'normal',
         }"
+        @click="handleCardClick(card)"
       >
         <div class="challenge-card-title">
           <h3>{{ card.title }}</h3>
@@ -20,15 +21,14 @@
         </div>
       </div>
     </div>
-    <div class="password">
-      <input type="password" placeholder="输入密码" />
-      <button>提交</button>
-    </div>
+   
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+const emit = defineEmits(['cardClick']);
 
 const challengeCards = ref([
   {
@@ -44,6 +44,10 @@ const challengeCards = ref([
     content: "破解代码吧",
   },
 ]);
+
+const handleCardClick = (card) => {
+  emit('cardClick', card);
+};
 </script>
 
 <style scoped>
@@ -59,7 +63,7 @@ const challengeCards = ref([
   width: 100%;
   height: 300px;
   display: flex;
-
+  justify-content: center;
   align-items: center;
 }
 

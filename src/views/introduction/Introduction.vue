@@ -26,25 +26,36 @@
       </div>
       <div class="bg"></div>
     </div>
-    <Rules
-      v-if="freezeLeft || side === 'left'"
-      class="rules"
-      @click="handleClick"
-    />
+    <transition name="rules">
+      <Rules
+        v-if="freezeLeft || side === 'left'"
+        class="rules"
+        @click="handleClick"
+        @cardClick="handleCardClick"
+      />
+    </transition>
+    <transition name="mine">
+      <Mine v-if="freezeRight || side === 'right'" class="mine-component" />
+    </transition>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import Rules from "./components/rules.vue";
-
+import Mine from "./components/mine.vue";
 const side = ref(null);
 const freezeLeft = ref(false);
 const freezeRight = ref(false);
 
 const isFreeze = computed(() => freezeLeft.value || freezeRight.value);
 
-const handleClick = () => {
+const handleClick = (event) => {
+  // 检查点击是否来自卡片
+  if (event.target.closest(".challenge-card")) {
+    return;
+  }
+
   if (isFreeze.value) {
     // 如果已经定格，点击任意位置解除定格
     freezeLeft.value = false;
@@ -60,6 +71,11 @@ const handleClick = () => {
     freezeRight.value = true;
     freezeLeft.value = false;
   }
+};
+
+const handleCardClick = (card) => {
+  // 处理卡片点击事件
+  console.log("Card clicked:", card);
 };
 </script>
 
@@ -161,12 +177,38 @@ const handleClick = () => {
 .rules {
   width: 80%;
   position: absolute;
-  /* display: none; */
   top: 50%;
   left: 40%;
   transform: translate(-50%, -50%);
-  /* z-index: 30; */
   z-index: 2;
   pointer-events: auto;
+}
+
+.rules-enter-active,
+.rules-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.rules-enter-from,
+.rules-leave-to {
+  opacity: 0;
+}
+.mine-enter-active,
+.mine-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.mine-enter-from,
+.mine-leave-to {
+  opacity: 0;
+}
+
+.mine-component {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  z-index: 2;
 }
 </style>
