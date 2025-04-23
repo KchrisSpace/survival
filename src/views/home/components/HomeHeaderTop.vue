@@ -37,12 +37,12 @@ const handleClick = () => {
   width: 100vw;
   height: 60px;
   background-color: rgba(
-    18,
-    18,
-    18,
-    0.7
+    255,
+    253,
+    253,
+    0.1
   ); /* Semi-transparent dark background */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
   color: #ffffff; /* Dark 模式文字颜色 */
   border: 3px solid #ffffff; /* Dark 模式下边框颜色 */
   display: flex;
@@ -54,13 +54,15 @@ const handleClick = () => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  background-color: inherit;
+  letter-spacing: 20px;
 }
 .header-left {
   font-family: "hakidame", "onryou"; /* 使用自定义字体 */
   flex: 1;
   font-size: 40px;
   height: 100%;
-  background-color: #f8f6f644;
+
   text-align: center;
   line-height: 60px; /* 垂直居中 */
 }
@@ -71,20 +73,28 @@ const handleClick = () => {
 }
 
 .header-right {
+  background-color: inherit;
   width: 180px;
   height: 100%;
   text-align: center;
   line-height: 60px; /* 垂直居中 */
   cursor: pointer;
-  background-color: #97b4aedd;
+  /* background-color: #97b4aedd; */
   transition: background-color 0.3s;
 }
 button {
-  background-color: #97b4aedd;
-  padding: 10px 20px;
+  width: 12rem;
+  height: 100%;
   border: none;
-  cursor: pointer;
-  font-size: 16px;
-  letter-spacing: 10px;
+  background-color: inherit;
+  opacity: 0;
+  font-family: 黑礼中字;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #bae6dddd;
+  opacity: 1;
+  font-size: 40px;
+  transition: background-color 0.3s;
 }
 </style>

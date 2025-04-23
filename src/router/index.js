@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
+ 
 
 // 定义路由组件
 const Home = () => import("../views/home/Home.vue");
 const Login = () => import("../views/login/Login.vue");
 const Introduction = () => import("../views/Introduction/Introduction.vue");
-
+const Test = () => import("../views/test/test.vue");
 // 定义路由规则
 const routes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/home",
   },
   {
     path: "/login",
@@ -29,7 +30,12 @@ const routes = [
     component: Introduction,
     // meta: { requiresAuth: true },
   },
-
+  {
+    path: "/test",
+    name: "Test",
+    component: Test,
+    // meta: { requiresAuth: true },
+  },
   {
     path: "/:pathMatch(.*)*",
     redirect: "/home",
