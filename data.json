@@ -3,6 +3,28 @@
     "admin": "chris",
     "password": 20150713
   },
+  "mine": [
+    {
+      "name": "拥星者",
+      "sign": "我想要拥抱的，是那环绕恒星star的行星",
+      "card": [
+        {
+          "image": "https://i.loli.net/2023/03/25/1716666666666.png",
+          "title": "拥星者",
+          "description": "拥星者",
+          "tag": ["拥星者"]
+        },
+        {
+          "image": "https://i.loli.net/2023/03/25/1716666666666.png",
+          "title": "拥星者",
+          "description": "拥星者",
+          "tag": ["拥星者"]
+        }
+      ]
+      
+    }
+  ],
+  
   "music": [
     {
       "name": " 离岛之歌",

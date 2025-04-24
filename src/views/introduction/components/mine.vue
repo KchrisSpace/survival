@@ -1,22 +1,40 @@
 <!-- 我的 -->
 <template>
-  <div class="mine">
+  <div class="mine" @click.stop>
     <div class="main">
       <div class="head-img">
-        <img src="/png/head.png" alt="加载失败" />
+        <img src="/png/head.png" alt="头像" />
       </div>
       <div class="info">
-        <p>NAME</p>
-        <P class="sign">SIGNmeitbxsjdnkjfdnelherilfblf</P>
+        <p>{{ userData?.name || "NAME" }}</p>
+        <p class="sign">{{ userData?.sign || "Loading..." }}</p>
       </div>
     </div>
 
-    <mine-cards />
+    <mine-cards :cards="userData?.card || []" @click.stop />
   </div>
 </template>
 
 <script setup>
 import mineCards from "./mine-cards.vue";
+import axios from "axios";
+import { ref, onMounted } from "vue";
+
+const userData = ref(null);
+
+const fetchUserData = async () => {
+  try {
+    const response = await axios.get("http://localhost:3000/mine");
+    // 由于后端返回的是数组，我们取第一个元素
+    userData.value = response.data[0];
+  } catch (error) {
+    console.error("Failed to fetch user data:", error);
+  }
+};
+
+onMounted(() => {
+  fetchUserData();
+});
 </script>
 
 <style scoped>
@@ -74,26 +92,48 @@ import mineCards from "./mine-cards.vue";
   object-fit: cover;
 }
 .info {
+  width: 80%;
   position: absolute;
-  left: 160px;
-  top: 30px;
+  left: 120px;
+  top: 20px;
   transform: none;
   text-align: left;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* min-width: 600px; */
 }
 .info p {
-  font-size: 24px;
+
   font-weight: bold;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-family: "Arial", sans-serif;
+  position: relative;
+  display: inline-block;
+}
+.info p::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
 }
 .sign {
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.9);
-  margin-top: 10px;
+  margin-top: 15px;
   font-style: italic;
-  max-width: 300px;
-  line-height: 1.4;
+  max-width: 600px;
+  line-height: 1.6;
+  padding-left: 5px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
 }
 </style>

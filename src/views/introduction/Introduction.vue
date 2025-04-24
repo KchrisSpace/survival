@@ -23,6 +23,9 @@
         <div class="title mine">
           <p>mine介绍</p>
         </div>
+        <div class="title hint">
+          <p>单击可定格</p>
+        </div>
       </div>
       <div class="bg"></div>
     </div>
@@ -85,6 +88,8 @@ const handleCardClick = (card) => {
   height: 100vh;
   background: linear-gradient(to right, #aadef6 50%, #fae5f8 -50%);
   z-index: -10;
+  overflow: hidden;
+  /* position: relative; */
 }
 
 .container {
@@ -166,6 +171,13 @@ const handleCardClick = (card) => {
   top: 40%;
 }
 
+.hint {
+  position: absolute;
+  left: 30%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+}
+
 .container:not(.freeze-left):not(.freeze-right) .left:hover ~ .titles .title,
 .container:not(.freeze-left):not(.freeze-right) .right:hover ~ .titles .title,
 .freeze-left .titles .title,
@@ -177,22 +189,24 @@ const handleCardClick = (card) => {
 .rules {
   width: 80%;
   position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   z-index: 2;
   pointer-events: auto;
 }
 
-.rules-enter-active,
+.rules-enter-active {
+  transition: opacity 2s ease-in-out;
+}
 .rules-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease-out;
 }
 
 .rules-enter-from,
 .rules-leave-to {
   opacity: 0;
 }
+
 .mine-enter-active,
 .mine-leave-active {
   transition: opacity 0.5s ease;
