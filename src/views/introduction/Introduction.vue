@@ -33,7 +33,6 @@
       <Rules
         v-if="freezeLeft || side === 'left'"
         class="rules"
-        @click="handleClick"
         @cardClick="handleCardClick"
       />
     </transition>
