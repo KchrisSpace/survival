@@ -1,7 +1,7 @@
 {
   "login": {
     "admin": "chris",
-    "password": 20150713
+    "password": "20150713"
   },
   "mine": [
     {
@@ -11,27 +11,46 @@
         {
           "image": "https://i.loli.net/2023/03/25/1716666666666.png",
           "title": "拥星者",
-          "description": "拥星者",
-          "tag": ["拥星者"]
+          "description": "爱好",
+          "tag": [
+            "拥星者"
+          ]
         },
         {
           "image": "https://i.loli.net/2023/03/25/1716666666666.png",
           "title": "拥星者",
-          "description": "拥星者",
-          "tag": ["拥星者"]
+          "description": "游戏",
+          "tag": [
+            "拥星者"
+          ]
+        },
+        {
+          "image": "https://i.loli.net/2023/03/25/1716666666666.png",
+          "title": "拥星者",
+          "description": "书籍",
+          "tag": [
+            "拥星者"
+          ]
         }
       ]
-      
     }
   ],
-  
+  "article": [
+    {
+      "id": "A1",
+      "title": "artical1",
+      "content": "1111111111",
+      "tag": [
+        "拥星者11"
+      ]
+    }
+  ],
   "music": [
     {
       "name": " 离岛之歌",
       "artist": "东山奈央",
       "url": "http://music.163.com/song/media/outer/url?id=1359559416.mp3"
     },
-
     {
       "name": " 烟火之律",
       "artist": "紧那罗",

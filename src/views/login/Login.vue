@@ -22,42 +22,31 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import BubbleEffect from "../../components/BubbleEffect.vue";
+import { ElMessage } from "element-plus";
 
 const username = ref("");
 const password = ref("");
-const errorMessage = ref("");
-const validCredentials = ref([]);
 const router = useRouter();
 
-onMounted(async () => {
+const handleLogin = async () => {
   try {
-    const response = await axios.get("src/json/data.json");
-    validCredentials.value = response.data.users; // 直接提取数据
-    console.log("获取的用户数据:", validCredentials.value); // 打
-  } catch (err) {
-    console.error(err);
-  }
-});
+    const response = await axios.get("http://localhost:3000/login", {
+      username: username.value,
+      password: password.value,
+    });
 
-const handleLogin = () => {
-  // 使用some方法遍历有效凭证数组，检查是否存在匹配的用户名和密码
-  const isValid = validCredentials.value.some(
-    (cred) =>
-      cred.username === username.value && cred.password === password.value
-  );
-
-  // 根据凭证验证结果，执行相应的操作
-  if (isValid) {
-    // 清空错误消息并导航到RouteA
-    errorMessage.value = "";
-    // 跳转到首页
-    router.push({ name: "Home" });
-    console.log("登录成功");
-  } else {
-    // 显示错误消息提示用户名或密码错误
-    alert("用户名或密码错误");
-    // 并清空输入框
-    username.value = "";
+    console.log(response);
+    if (response.status === 200) {
+      // 只要登录成功就进入管理后台
+      localStorage.setItem("token", "admin-token");
+      ElMessage.success("登录成功");
+      router.push({ name: "Admin" });
+    } else {
+      ElMessage.error("登录失败");
+    }
+  } catch (error) {
+    console.error("登录错误:", error);
+    ElMessage.error("登录失败");
   }
 };
 </script>
@@ -67,7 +56,6 @@ const handleLogin = () => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   cursor: none;
 }
 
@@ -86,6 +74,7 @@ const handleLogin = () => {
   position: relative;
   overflow: hidden;
 }
+
 input {
   width: 100%;
   height: 40px;
@@ -94,20 +83,18 @@ input {
   border: 1px solid #f6f3f35c;
   border-radius: 15px;
   font-size: 16px;
-  color: #fff; /* 输入文本颜色 */
-  background-color: transparent; /* 确保背景透明 */
+  color: #fff;
+  background-color: transparent;
 }
 
-/* 修改占位符文本颜色 */
 input::placeholder {
-  color: #fff; /* 设置占位符文本为白色 */
-  opacity: 0.7; /* 可选：设置透明度 */
+  color: #fff;
+  opacity: 0.7;
 }
 
-/* 添加聚焦样式 */
 input:focus {
-  border: 1px solid #fffcfc; /* 修改为你想要的边框颜色 */
-  outline: none; /* 去掉默认的聚焦轮廓 */
+  border: 1px solid #fffcfc;
+  outline: none;
   box-shadow: 0 1px 3px rgb(255, 253, 253);
 }
 
@@ -116,6 +103,7 @@ input:focus {
   margin-bottom: 20px;
   color: #fff;
 }
+
 .login-box {
   width: 400px;
   height: 270px;
@@ -130,6 +118,7 @@ input:focus {
   backdrop-filter: blur(3px);
   box-shadow: 0 0 3ch rgba(0, 0, 0, 0.5);
 }
+
 .login-title {
   font-size: 24px;
   font-weight: bold;
@@ -137,6 +126,7 @@ input:focus {
   margin-bottom: 20px;
   color: #fff;
 }
+
 .loginbutton {
   width: 100%;
   display: flex;
@@ -144,6 +134,7 @@ input:focus {
   justify-content: space-evenly;
   gap: 10px;
 }
+
 .loginbutton button {
   width: 100%;
   height: 30px;
@@ -156,14 +147,17 @@ input:focus {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
 .loginbutton button:hover {
   background-color: #ac9f9f;
   color: #fff;
 }
+
 a {
   color: #070707;
   text-decoration: none;
 }
+
 a:hover {
   color: #fff;
   text-decoration: underline;

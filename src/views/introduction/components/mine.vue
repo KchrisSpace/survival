@@ -1,6 +1,6 @@
 <!-- 我的 -->
 <template>
-  <div class="mine" @click.stop>
+  <div class="mine" >
     <div class="main">
       <div class="head-img">
         <img src="/png/head.png" alt="头像" />
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <mine-cards :cards="userData?.card || []" @click.stop />
+    <mine-cards :cards="userData?.card || []"  />
   </div>
 </template>
 

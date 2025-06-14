@@ -1,7 +1,13 @@
 <!--  -->
 <template>
-  <div class="rules" @click.stop>
+  <div class="rules">
     <div class="rules-content">
+      <img
+        src="/public/png/introduction/cross.png"
+        alt=""
+        class="cross"
+        @click="close"
+      />
       <div class="rules-content-title">
         <h1>我来做一个小小的介绍</h1>
       </div>
@@ -20,19 +26,18 @@
             </ul>
           </div>
         </div>
-        <Challenge class="C" @cardClick="handleCardClick" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import Challenge from "./Challenge.vue";
-const emit = defineEmits(["cardClick"]);
-
-const handleCardClick = (card) => {
-  emit("cardClick", card);
-};
+const emit =defineEmits(["handleCloseBtnClick"])
+function close() {
+  // console.log("点击查");
+  emit("handleCloseBtnClick",true);
+ 
+}
 </script>
 
 <style scoped>
@@ -52,11 +57,11 @@ const handleCardClick = (card) => {
   background: linear-gradient(
     to top,
     rgba(138, 99, 185, 0.5),
-    rgba(255, 255, 255, 0.3)
+    rgba(129, 118, 145, 0.304)
   );
   backdrop-filter: blur(20px);
-  color: #342f2f;
-  box-shadow: 10px 0 10px 0 rgba(120, 109, 109, 0.6);
+  color: #c2b7b7;
+  box-shadow: 10px 0 10px 0 rgba(138, 99, 185, 0.5);
   transition: all 0.3s ease;
   font-family: "马克笔";
   border-radius: 20px;
@@ -65,6 +70,13 @@ const handleCardClick = (card) => {
   pointer-events: auto;
 }
 
+.rules-content .cross {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 .rules-content-title {
   margin-top: 5px;
   height: 50px;
@@ -88,7 +100,7 @@ const handleCardClick = (card) => {
 }
 
 .rules-content-list {
-  width: 80%;
+  width: 100%;
   padding: 0 60px;
 }
 
