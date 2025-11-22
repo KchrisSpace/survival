@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="rules">
+  <div class="rules" :class="{ visible: isVisible }">
     <div class="rules-content">
       <img
         src="/public/png/introduction/cross.png"
@@ -32,11 +32,17 @@
 </template>
 
 <script setup>
-const emit =defineEmits(["handleCloseBtnClick"])
+const props = defineProps({
+  isVisible: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(["handleCloseBtnClick"]);
 function close() {
   // console.log("点击查");
-  emit("handleCloseBtnClick",true);
- 
+  emit("handleCloseBtnClick", true);
 }
 </script>
 
@@ -45,10 +51,15 @@ function close() {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   pointer-events: none;
+  padding-right: 5%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+.rules.visible {
+  opacity: 1;
 }
 
 .rules-content {
@@ -68,6 +79,8 @@ function close() {
   overflow: hidden;
   cursor: default;
   pointer-events: auto;
+  transform: scale(0.85) translateX(-30%);
+  transform-origin: center right;
 }
 
 .rules-content .cross {
